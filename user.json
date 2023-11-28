@@ -1,0 +1,14 @@
+{
+  "user": [
+    {
+      "user_id": "AK47GO",
+      "name": "Johhny Walker",
+      "weight_kg": 81.0,
+      "height_cm": 175,
+      "age": 23,
+      "gender": "male",
+      "activity_level": "moderate",
+      "goal": "weight_loss"
+    }
+  ]
+}
