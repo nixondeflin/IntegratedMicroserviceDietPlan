@@ -1,4 +1,4 @@
-from fastapi import FastAPI, Depends, HTTPException, status
+from fastapi import FastAPI, Depends, HTTPException, status,Query
 from fastapi.security import OAuth2PasswordBearer
 from jose import JWTError, jwt
 from pydantic import BaseModel
@@ -31,6 +31,16 @@ class UserData(BaseModel):
     gender: str
     activity_level: str
     goal: str
+
+class UserInput(BaseModel):
+    user_id: str
+    age: int
+    gender: str
+    weight_kg: float
+    height_cm: float
+    activity_level: str
+    goal: str
+
 
 class DietRecommendation(BaseModel):
     user_id: str
@@ -212,3 +222,120 @@ def delete_diet_recommendation(user_id: str, current_user: str = Depends(get_cur
                 json.dump(datarecom, write_file, indent=2)
             return deleted_user
     raise HTTPException(status_code=404, detail="Diet Recommendation not found")
+
+
+# New endpoint to calculate daily calorie needs
+@app.get("/calculate_calories/{user_id}")
+def calculate_calories(user_id: str, current_user: str = Depends(get_current_user)):
+    for user in datauser["user"]:
+        if user["user_id"] == user_id:
+            age = user["age"]
+            gender = user["gender"]
+            weight = user['weight_kg']
+            height = user['height_cm']
+            actlevel = user['activity_level']
+            goal = user['goal']
+
+            # Constants for Mifflin-St Jeor Equation
+            if gender.lower() == 'male':
+                total_fiber = 38
+                constant = 5
+            else:
+                total_fiber = 25
+                constant = -161
+
+            # Calculate BMR (Basal Metabolic Rate)
+            bmr = (10 * weight) + (6.25 * height) - (5 * age) + constant
+
+            if actlevel.lower() == 'sedentary' :
+                multiplier = 1.2
+            elif actlevel.lower() == 'light' :
+                multiplier = 1.375
+            elif actlevel.lower() == 'moderate' :
+                multiplier = 1.55
+            elif actlevel.lower() == 'active' :
+                multiplier = 1.725
+            elif actlevel.lower() == 'extremely_active' :
+                multiplier = 1.9
+
+            if goal.lower() == "weight_loss" :
+                constant_goal = -500
+            elif goal.lower() == "weight_gain" :
+                constant_goal = 500
+            else : 
+                constant_goal = 0
+
+            # Calculate Total Calories
+            total_calories = int(bmr * multiplier) + int(constant_goal)
+
+            total_protein =int(weight * 1.5)
+
+            total_carbo = int(0.5*total_calories/4)
+
+            total_fat = int(0.3*total_calories/9)
+
+
+            return {"user_id": user_id, 
+                    "calories_per_day": total_calories, 
+                    "protein_grams_per_day" : total_protein, 
+                    "carbohydrate_grams_per_day" : total_carbo,
+                    "fat_grams_per_day" : total_fat,
+                    "fiber_grams_per_day": total_fiber}
+
+    raise HTTPException(status_code=404, detail="User not found")
+
+@app.post("/calculate_calories")
+def calculate_calories(user_input: UserInput):
+    age = user_input.age
+    gender = user_input.gender.lower()
+    weight = user_input.weight_kg
+    height = user_input.height_cm
+    actlevel = user_input.activity_level.lower()
+    goal = user_input.goal.lower()
+
+    multiplier = 1.2
+
+    # Constants for Mifflin-St Jeor Equation
+    if gender == 'male':
+        total_fiber = 38
+        constant = 5
+    else:
+        total_fiber = 25
+        constant = -161
+
+    # Calculate BMR (Basal Metabolic Rate)
+    bmr = (10 * weight) + (6.25 * height) - (5 * age) + constant
+
+    if actlevel == 'sedentary':
+        multiplier = 1.2
+    elif actlevel == 'light':
+        multiplier = 1.375
+    elif actlevel == 'moderate':
+        multiplier = 1.55
+    elif actlevel == 'active':
+        multiplier = 1.725
+    elif actlevel == 'extremely_active':
+        multiplier = 1.9
+
+    if goal == "weight_loss":
+        constant_goal = -500
+    elif goal == "weight_gain":
+        constant_goal = 500
+    else:
+        constant_goal = 0
+
+    # Calculate Total Calories
+    total_calories = int(bmr * multiplier) + int(constant_goal)
+
+    total_protein = int(weight * 1.5)
+    total_carbo = int(0.5 * total_calories / 4)
+    total_fat = int(0.3 * total_calories / 9)
+
+    return {
+        "user_id": user_input.user_id,
+        "calories_per_day": total_calories,
+        "protein_grams_per_day": total_protein,
+        "carbohydrate_grams_per_day": total_carbo,
+        "fat_grams_per_day": total_fat,
+        "fiber_grams_per_day": total_fiber
+    }

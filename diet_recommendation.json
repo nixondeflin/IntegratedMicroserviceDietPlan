@@ -2,15 +2,11 @@
   "diet_recommendation": [
     {
       "user_id": "AK47GO",
-      "calories_per_day": 1800,
-      "protein_grams_per_day": 120,
-      "carbohydrates_grams_per_day": 200,
-      "fat_grams_per_day": 60,
-      "fiber_grams_per_day": 30,
-      "breakfast": "Oatmeal with fruits and yogurt, 1 bowl",
-      "lunch": "Grilled Chicken Salad, 1 plate",
-      "dinner": "Mixed nuts and banana, 1 handful of nuts and 1 banana",
-      "snack": "Salmon with quinoa and steamed broccoli, 1 portion"
+      "calories_per_day": 2280,
+      "protein_grams_per_day": 121,
+      "carbohydrates_grams_per_day": 285,
+      "fat_grams_per_day": 76,
+      "fiber_grams_per_day": 38
     }
   ]
 }
