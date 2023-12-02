@@ -285,7 +285,7 @@ def calculate_calories(user_id: str, current_user: str = Depends(get_current_use
     raise HTTPException(status_code=404, detail="User not found")
 
 @app.post("/calculate_calories")
-def calculate_calories(user_input: UserInput):
+def calculate_calories(user_input: UserInput, current_user: str = Depends(get_current_user)):
     age = user_input.age
     gender = user_input.gender.lower()
     weight = user_input.weight_kg
