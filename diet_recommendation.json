@@ -6,7 +6,11 @@
       "protein_grams_per_day": 121,
       "carbohydrates_grams_per_day": 285,
       "fat_grams_per_day": 76,
-      "fiber_grams_per_day": 38
+      "fiber_grams_per_day": 38,
+      "breakfast" : "100g Rolled Oats, 1 Medium Banana, 30g Almonds, 1 cup Whole Milk",
+      "lunch" : "150g Grilled Chicken Breast, 1 cup Quinoa, 1 cup Steamed Broccoli, 1 tablespoon Olive Oil",
+      "dinner" : "150g Baked Salmon, 1 cup Brown Rice, 1 cup Roasted Asparagus, 1 tablespoon Avocado",
+      "snack" : "3 cup Greek Yogurt,  cup Mixed Berries"
     }
   ]
 }
