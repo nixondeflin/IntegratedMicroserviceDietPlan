@@ -13,7 +13,7 @@ import {
 import { Button } from "@chakra-ui/react";
 import { NavLink, useLocation } from "react-router-dom";
 
-const DietUserForm = ({
+const NutritionUserForm = ({
   formData,
   handleInputChange,
   handleSubmit,
@@ -146,4 +146,4 @@ const DietUserForm = ({
   );
 };
 
-export default DietUserForm;
+export default NutritionUserForm;

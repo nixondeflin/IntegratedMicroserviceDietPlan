@@ -29,13 +29,6 @@ const Home = () => {
       <nav>
         <ul className="primary-nav">
           <li>
-            <Button colorScheme="whatsapp"
-                  width="10rem"
-                  margin="4">
-              <NavLink to="/home" exact="true" activeclassname="active">
-                Home
-              </NavLink>
-            </Button>
           <Button colorScheme="whatsapp"
                   width="12rem"
                   margin="4">

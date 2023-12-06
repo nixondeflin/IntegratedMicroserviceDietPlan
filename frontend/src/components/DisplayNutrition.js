@@ -10,7 +10,7 @@ import {
   Td,
 } from "@chakra-ui/react";
 
-const DietPlanDisplay = ({ username, randomDiet }) => {
+const DisplayNutrition = ({ username, randomDiet }) => {
   
 return (
   <Table variant="simple" size="lg">
@@ -55,4 +55,4 @@ const cellStyle1 = {
   textAlign: "center",
 };
 
-export default DietPlanDisplay;
+export default DisplayNutrition;

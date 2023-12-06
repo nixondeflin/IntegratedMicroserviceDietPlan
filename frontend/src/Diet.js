@@ -11,13 +11,16 @@ import {
   ModalBody,
   ModalCloseButton,
   useDisclosure,
+  Box,
+  Text
 } from "@chakra-ui/react";
 import config from "./config";
 import { NavLink, useLocation } from "react-router-dom";
-import DietProfile from "./components/DietProfile";
-import DietUserForm from "./components/DietUserForm";
+import NutritionProfile from "./components/NutritionProfile";
+import NutritionUserForm from "./components/NutritionUserForm";
 import useDiet from "./hooks/useDiet";
-import DietPlanDisplay from "./components/DisplayDietPlan";
+import DisplayNutrition from "./components/DisplayNutrition";
+
 
 function generateUniqueId() {
   // Generate a unique ID using the current timestamp and a random number
@@ -106,15 +109,15 @@ const Diet = () => {
   return (
     <>
       <main className="content" >
-        <p className="headingM" style= {{textAlign: 'left'}}><b>User : {usernameP}</b></p>
-
-        <p style= {{textAlign: 'left'}}>Apabila hasil kalkulator kalori terdapat hasil negatif, <br/>isikan kembali data Anda dalam tombol Edit, lalu tekan tombol Nutrition Analysis.</p>
-
+        <Box as='button' borderRadius='md' bg='#25D366' position='absolute' top ='0' left ='0' color='white' px={4} h={8} ><b>User : {username}</b></Box>
+        <br></br>
+        <Text textAlign='left'>Apabila hasil kalkulator kalori terdapat hasil negatif, <br/>isikan kembali data Anda dalam tombol Edit, lalu tekan tombol Nutrition Analysis.</Text>
+      
         {data && (
           <>
             {data["user_id"] ? (
               <>
-                <DietProfile data={data} />
+                <NutritionProfile data={data} />
                 <Button
                   colorScheme="whatsapp"
                   margin="4"
@@ -146,7 +149,7 @@ const Diet = () => {
             ) : (
               <div>
                 <h1 className="headingL" >Form</h1>
-                <DietUserForm
+                <NutritionUserForm
                   formData={formData}
                   handleInputChange={handleInputChange}
                   handleSubmit={handleSubmit}
@@ -163,7 +166,7 @@ const Diet = () => {
               <ModalHeader>Edit Data</ModalHeader>
               <ModalCloseButton />
               <ModalBody>
-                <DietUserForm
+                <NutritionUserForm
                   formData={formData}
                   handleInputChange={handleInputChange}
                   handleSubmit={handleSubmit}
@@ -177,7 +180,7 @@ const Diet = () => {
           </Modal>
         </>
         {dietrec &&
-          <DietPlanDisplay
+          <DisplayNutrition
           username={username}
           randomDiet={dietrec}
         />

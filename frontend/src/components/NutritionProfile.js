@@ -1,9 +1,9 @@
 import React from "react";
 
-const DietProfile = ({ data }) => {
+const NutritionProfile = ({ data }) => {
   return (
     <div style={{ maxWidth: "600px", margin: "0 auto" }}>
-      <h1 className="headingL">Profile Data</h1>
+      <h1 className="headingL">Nutrition Profile</h1>
       <table style={{ width: "100%", borderCollapse: "collapse" }}>
         <tbody>
           <tr>
@@ -66,4 +66,4 @@ const cellStyle = {
   textAlign: "left",
 };
 
-export default DietProfile;
+export default NutritionProfile;

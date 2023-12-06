@@ -3,6 +3,7 @@ import useClass from "./hooks/useClass";
 import useContent from "./hooks/useContents";
 import { Button } from "@chakra-ui/react";
 import { NavLink, useLocation } from "react-router-dom";
+import {Box} from "@chakra-ui/react";
 
 const Class = () => {
 
@@ -16,20 +17,18 @@ const Class = () => {
 
   return (
     <>
-    <p className="headingM"style= {{textAlign: 'left'}}><b>User : {username}</b></p>
+    <Box as='button' borderRadius='md' bg='#25D366' position='absolute' top ='0' left ='0' color='white' px={4} h={8} ><b>User : {username}</b></Box>
       <div style={{ maxWidth: "900px", margin: "0 auto" }}>
-
         <h1 className="headingL">Sports Classes</h1>
         {data[0]["class_id"] && (
           <div>
             <table style={tableStyle}>
               <thead>
                 <tr>
-                  <th style={headerCellStyle}>Class ID</th>
-                  <th style={headerCellStyle}>Coach ID</th>
+                  <th style={headerCellStyle}>No</th>
+                  <th style={headerCellStyle}>Class Type</th>
                   <th style={headerCellStyle}>Start Time</th>
                   <th style={headerCellStyle}>End Time</th>
-                  <th style={headerCellStyle}>Class Type</th>
                   <th style={headerCellStyle}>Join Class</th> 
                 </tr>
               </thead>
@@ -37,10 +36,9 @@ const Class = () => {
                 {data.map((classInfo) => (
                   <tr key={classInfo.class_id}>
                     <td style={cellStyle}>{classInfo.class_id}</td>
-                    <td style={cellStyle}>{classInfo.coach_id}</td>
+                    <td style={cellStyle}>{classInfo.class_type}</td>
                     <td style={cellStyle}>{classInfo.start_time}</td>
                     <td style={cellStyle}>{classInfo.end_time}</td>
-                    <td style={cellStyle}>{classInfo.class_type}</td>
                     <td style={cellStyle}>
                       <Button colorScheme="whatsapp" width="5rem" margin="4" onClick={() => handleJoinClick(classInfo.class_id)}>Join</Button>
                     </td>
