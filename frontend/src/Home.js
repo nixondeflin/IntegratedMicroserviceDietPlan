@@ -1,7 +1,6 @@
 // Home.js
 import React from 'react';
-import { useContext } from "react";
-import { NavLink, useLocation } from "react-router-dom";
+import { NavLink} from "react-router-dom";
 import { Button } from "@chakra-ui/react";
 import { Text } from "@chakra-ui/react";
 

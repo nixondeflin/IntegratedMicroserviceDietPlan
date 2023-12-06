@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import axios from "axios"; // Make sure to import axios
+import axios from "axios"; 
 import config from "../config";
 
 const useContent = () => {
@@ -13,9 +13,6 @@ const useContent = () => {
     fetchData();
   }, [token, username]);
 
-  // useEffect(() => {
-  //   fetchData();
-  // }, []);
 
   const fetchData = async () => {
     const headers = {
@@ -28,7 +25,6 @@ const useContent = () => {
         config.coreApiUrl + "customers/" + username,
         { headers }
       );
-      // console.log("GET request successful:");
       const data = response.data;
       setData(data);
     } catch (error) {
@@ -89,24 +85,7 @@ const useContent = () => {
     }
   };
 
-  const postLoanRecommendation = async (loanData) => {
-    const url = config.coreApiUrl + "recommend_loan/" + username;
 
-    const headers = {
-      Authorization: `Bearer ${token}`,
-      "Content-Type": "application/json",
-    };
-    console.log("asd");
-
-    try {
-      const response = await axios.post(url, loanData, { headers });
-      console.log("Loan recommendation submitted successfully:", response.data);
-      return { success: true, data: response.data };
-    } catch (error) {
-      console.error("Error submitting loan recommendation:", error);
-      return { success: false, error };
-    }
-  };
 
   return {
     data,
@@ -117,7 +96,6 @@ const useContent = () => {
     fetchData,
     deleteData,
     updateData,
-    postLoanRecommendation,
   };
 };
 

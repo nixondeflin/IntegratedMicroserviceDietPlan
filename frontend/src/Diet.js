@@ -1,6 +1,5 @@
 import React, { useState } from "react";
-import { Button, ButtonGroup } from "@chakra-ui/react";
-import axios from "axios";
+import { Button } from "@chakra-ui/react";
 import useContent from "./hooks/useContents";
 import {
   Modal,
@@ -15,28 +14,17 @@ import {
   Text
 } from "@chakra-ui/react";
 import config from "./config";
-import { NavLink, useLocation } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 import NutritionProfile from "./components/NutritionProfile";
 import NutritionUserForm from "./components/NutritionUserForm";
 import useDiet from "./hooks/useDiet";
 import DisplayNutrition from "./components/DisplayNutrition";
 
 
-function generateUniqueId() {
-  // Generate a unique ID using the current timestamp and a random number
-  const timestamp = new Date().getTime().toString(16);
-  const random = Math.random().toString(16).slice(2); // Remove '0.' from the beginning
-
-  // Concatenate the timestamp and random number
-  const uniqueId = timestamp + random;
-
-  return uniqueId;
-}
-
 const Diet = () => {
-  const { data, username, postData, postDataDiet, fetchData, fetchDataDiet,dataDiet, updateData, deleteData, error } =
+  const { data, username, postData, postDataDiet, fetchData,  updateData, deleteData } =
     useDiet();
-  const { username: usernameP } = useContent();
+
 
   const [dietrec,setDietRec] = useState(null);
 

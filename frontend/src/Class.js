@@ -2,7 +2,7 @@ import React from "react";
 import useClass from "./hooks/useClass";
 import useContent from "./hooks/useContents";
 import { Button } from "@chakra-ui/react";
-import { NavLink, useLocation } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 import {Box} from "@chakra-ui/react";
 
 const Class = () => {

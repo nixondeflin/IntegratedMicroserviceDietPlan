@@ -1,5 +1,5 @@
 import React from "react";
-import { Box, VStack, Heading, Text, SimpleGrid } from "@chakra-ui/react";
+import { Heading } from "@chakra-ui/react";
 import {
   Table,
   TableCaption,

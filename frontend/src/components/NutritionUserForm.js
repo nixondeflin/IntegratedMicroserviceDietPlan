@@ -11,7 +11,7 @@ import {
   Input,
 } from "@chakra-ui/react";
 import { Button } from "@chakra-ui/react";
-import { NavLink, useLocation } from "react-router-dom";
+import { NavLink} from "react-router-dom";
 
 const NutritionUserForm = ({
   formData,

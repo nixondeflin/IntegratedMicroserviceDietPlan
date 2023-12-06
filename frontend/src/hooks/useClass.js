@@ -87,24 +87,7 @@ const useClass = () => {
     }
   };
 
-  const postLoanRecommendation = async (loanData) => {
-    const url = config.gymApiUrl + "recommend_loan/" + username;
 
-    const headers = {
-      Authorization: `Bearer ${token}`,
-      "Content-Type": "application/json",
-    };
-    console.log("asd");
-
-    try {
-      const response = await axios.post(url, loanData, { headers });
-      console.log("Loan recommendation submitted successfully:", response.data);
-      return { success: true, data: response.data };
-    } catch (error) {
-      console.error("Error submitting loan recommendation:", error);
-      return { success: false, error };
-    }
-  };
 
   return {
     data,
