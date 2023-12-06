@@ -11,7 +11,7 @@ const useContent = () => {
 
   useEffect(() => {
     fetchData();
-  }, [token, username,fetchData]);
+  }, [token, username]);
 
 
   const fetchData = async () => {
