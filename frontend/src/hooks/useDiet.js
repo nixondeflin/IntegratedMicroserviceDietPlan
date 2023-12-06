@@ -16,13 +16,13 @@ const useDiet = () => {
     fetchData();
     fetchDietRecommendation();
     fetchDataDiet();
-  }, [token, username]);
+  }, [token, username,fetchData,fetchDietRecommendation,fetchDataDiet]);
 
   useEffect(() => {
     fetchData();
     fetchDietRecommendation();
     fetchDataDiet();
-  }, []);
+  }, [fetchData,fetchDietRecommendation,fetchDataDiet]);
 
   const fetchData = async () => {
     const headers = {

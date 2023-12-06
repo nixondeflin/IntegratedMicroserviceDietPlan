@@ -11,11 +11,11 @@ const useClass = () => {
 
   useEffect(() => {
     fetchData();
-  }, [token, username]);
+  }, [token, username,fetchData]);
 
   useEffect(() => {
     fetchData();
-  }, []);
+  }, [fetchData]);
 
   const fetchData = async () => {
     const headers = {

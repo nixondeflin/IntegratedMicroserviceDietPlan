@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { Button } from "@chakra-ui/react";
-import useContent from "./hooks/useContents";
+// import useContent from "./hooks/useContents";
 import {
   Modal,
   ModalOverlay,
