@@ -9,13 +9,7 @@ const useClass = () => {
   const [data, setData] = useState("temp");
   const [error, setError] = useState(null);
 
-  useEffect(() => {
-    fetchData();
-  }, [token, username,fetchData]);
 
-  useEffect(() => {
-    fetchData();
-  }, []);
 
   const fetchData = async () => {
     const headers = {
@@ -36,6 +30,14 @@ const useClass = () => {
     }
   };
 
+  useEffect(() => {
+    fetchData();
+  }, [token, username,fetchData]);
+
+  useEffect(() => {
+    fetchData();
+  }, []);
+  
   const postData = async (url, formData) => {
     const headers = {
       Authorization: `Bearer ${token}`,
