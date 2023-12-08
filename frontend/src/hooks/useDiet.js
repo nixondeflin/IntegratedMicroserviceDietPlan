@@ -72,7 +72,7 @@ const useDiet = () => {
       console.error("Error in GET request:", error);
       setError(error);
     }
-  },[token,username]);
+  },[token]);
 
   useEffect(() => {
     fetchData();
