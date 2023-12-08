@@ -30,7 +30,7 @@ const useDiet = () => {
       console.error("Error in GET request:", error);
       setError(error);
     }
-  },[token]);
+  },[token,username]);
 
   const fetchDataDiet = useCallback(async () => {
     const headers = {
@@ -50,19 +50,19 @@ const useDiet = () => {
       console.error("Error in GET request:", error);
       setError(error);
     }
-  },[token]);
+  },[token,username]);
 
   useEffect(() => {
     fetchData();
     fetchDietRecommendation();
     fetchDataDiet();
-  }, [fetchData, fetchDataDiet,username]);
+  }, [fetchData, fetchDataDiet, fetchDietRecommendation,username]);
 
   useEffect(() => {
     fetchData();
     fetchDietRecommendation();
     fetchDataDiet();
-  }, [fetchData,fetchDataDiet]);
+  }, [fetchData,fetchDataDiet,fetchDietRecommendation]);
 
   const postData = async (url, formData) => {
     const headers = {

@@ -26,7 +26,7 @@ const useContent = () => {
       console.error("Error in GET request:", error);
       setError(error);
     }
-  },[token]);
+  },[token,username]);
 
   useEffect(() => {
     fetchData();
