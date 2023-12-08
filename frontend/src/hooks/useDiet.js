@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useCallback } from "react";
 import axios from "axios"; // Make sure to import axios
 import config from "../config";
 
@@ -12,19 +12,8 @@ const useDiet = () => {
   const [dataDietRec, setDataDietRec] = useState("temp");
   const [error, setError] = useState(null);
 
-  useEffect(() => {
-    fetchData();
-    fetchDietRecommendation();
-    fetchDataDiet();
-  }, [token, username]);
 
-  useEffect(() => {
-    fetchData();
-    fetchDietRecommendation();
-    fetchDataDiet();
-  }, []);
-
-  const fetchData = async () => {
+  const fetchData = useCallback(async () => {
     const headers = {
       Authorization: `Bearer ${token}`,
       "Content-Type": "application/json",
@@ -41,9 +30,9 @@ const useDiet = () => {
       console.error("Error in GET request:", error);
       setError(error);
     }
-  };
+  },[token]);
 
-  const fetchDataDiet = async () => {
+  const fetchDataDiet = useCallback(async () => {
     const headers = {
       Authorization: `Bearer ${token}`,
       "Content-Type": "application/json",
@@ -61,7 +50,19 @@ const useDiet = () => {
       console.error("Error in GET request:", error);
       setError(error);
     }
-  };
+  },[token]);
+
+  useEffect(() => {
+    fetchData();
+    fetchDietRecommendation();
+    fetchDataDiet();
+  }, [fetchData, fetchDataDiet,username]);
+
+  useEffect(() => {
+    fetchData();
+    fetchDietRecommendation();
+    fetchDataDiet();
+  }, [fetchData,fetchDataDiet]);
 
   const postData = async (url, formData) => {
     const headers = {
