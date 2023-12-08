@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useCallback } from "react";
 import axios from "axios"; // Make sure to import axios
 import config from "../config";
 
@@ -11,7 +11,7 @@ const useClass = () => {
 
 
 
-  const fetchData = async () => {
+  const fetchData = useCallback(async () => {
     const headers = {
       Authorization: `Bearer ${token}`,
       "Content-Type": "application/json",
@@ -28,16 +28,16 @@ const useClass = () => {
       console.error("Error in GET request:", error);
       setError(error);
     }
-  };
+  });
 
   useEffect(() => {
     fetchData();
-  }, [token, username,fetchData]);
+  }, [token, username]);
 
   useEffect(() => {
     fetchData();
-  }, []);
-  
+  }, [fetchData]);
+
   const postData = async (url, formData) => {
     const headers = {
       Authorization: `Bearer ${token}`,
