@@ -52,6 +52,28 @@ const useDiet = () => {
     }
   },[token,username]);
 
+  const fetchDietRecommendation = useCallback(async () => {
+    const headers = {
+      Authorization: `Bearer ${token}`,
+      "Content-Type": "application/json",
+    };
+
+    try {
+      const response = await axios.get(
+        config.dietApiUrl + "diet_recommendation",
+        {
+          headers: headers,
+        }
+      );
+
+      const data = response.data;
+      setDataDietRec(data);
+    } catch (error) {
+      console.error("Error in GET request:", error);
+      setError(error);
+    }
+  },[token,username]);
+
   useEffect(() => {
     fetchData();
     fetchDietRecommendation();
@@ -132,27 +154,6 @@ const useDiet = () => {
     }
   };
 
-  const fetchDietRecommendation = async () => {
-    const headers = {
-      Authorization: `Bearer ${token}`,
-      "Content-Type": "application/json",
-    };
-
-    try {
-      const response = await axios.get(
-        config.dietApiUrl + "diet_recommendation",
-        {
-          headers: headers,
-        }
-      );
-
-      const data = response.data;
-      setDataDietRec(data);
-    } catch (error) {
-      console.error("Error in GET request:", error);
-      setError(error);
-    }
-  };
 
   return {
     data,
