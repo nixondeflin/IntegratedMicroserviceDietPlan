@@ -28,11 +28,11 @@ const useClass = () => {
       console.error("Error in GET request:", error);
       setError(error);
     }
-  });
+  },[token]);
 
   useEffect(() => {
     fetchData();
-  }, [token, username]);
+  }, [fetchData, username]);
 
   useEffect(() => {
     fetchData();
